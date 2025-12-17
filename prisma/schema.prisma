@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ContactRequest {
+  id          String    @id @default(cuid())
+  name        String    @db.VarChar(255)
+  email       String    @db.VarChar(255)
+  phone       String    @db.VarChar(20)
+  serviceType String    @db.VarChar(255)
+  message     String    @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+}
+
+model QuoteRequest {
+  id          String    @id @default(cuid())
+  name        String    @db.VarChar(255)
+  email       String    @db.VarChar(255)
+  phone       String    @db.VarChar(20)
+  projectType String    @db.VarChar(255)
+  areaSize    Float?
+  location    String    @db.VarChar(255)
+  notes       String?   @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+}
