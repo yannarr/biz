@@ -1,49 +1,47 @@
-import type { Metadata } from "next";
-import { Toaster } from "react-hot-toast";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import "./globals.css";
+import type React from "react"
+import type { Metadata } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
+
+const _geist = Geist({ subsets: ["latin"] })
+const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "EpoxyResin - Premium Epoxy Services in Nairobi, Kenya",
+  title: "ResinPro - Premium Epoxy Solutions | Floors, Countertops & Custom Art",
   description:
-    "Professional epoxy flooring, countertops, and coatings for residential and commercial properties in Nairobi and Kenya. Get a free quote today.",
-  keywords: [
-    "epoxy flooring",
-    "epoxy coatings",
-    "epoxy resin",
-    "Nairobi",
-    "Kenya",
-    "flooring",
-    "countertops",
-  ],
-  openGraph: {
-    title: "EpoxyResin - Premium Epoxy Services in Nairobi, Kenya",
-    description:
-      "Professional epoxy flooring, countertops, and coatings for residential and commercial properties.",
-    type: "website",
-    locale: "en_KE",
+    "Transform your spaces with expertly crafted epoxy flooring, countertops, tables, and custom resin art. Premium quality, built to last.",
+  generator: "v0.app",
+  icons: {
+    icon: [
+      {
+        url: "/icon-light-32x32.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/icon-dark-32x32.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: "/apple-icon.png",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "EpoxyResin - Premium Epoxy Services",
-    description: "Professional epoxy services in Nairobi, Kenya",
-  },
-};
+}
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <Toaster position="bottom-right" />
+      <body className={`font-sans antialiased`}>
+        {children}
+        <Analytics />
       </body>
     </html>
-  );
+  )
 }
